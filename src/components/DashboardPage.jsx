@@ -29,11 +29,14 @@ export default function DashboardPage({ dashboard, refreshing, refresh, refreshE
             <p className="muted">Compare published 22K and 24K rates | SGD per gram</p>
           </div>
           <div className="heading-actions">
-            <time className="current-time" dateTime={now.toISOString()}>{now.toLocaleString('en-SG', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' })}</time>
-            <span className="refresh-badge">Last Refresh: {formatTimestamp(dashboard.lastRefresh)}</span>
-            <button className="refresh-button" type="button" onClick={refresh} disabled={refreshing}>
-              <span aria-hidden="true">↻</span> {refreshing ? 'Refreshing…' : 'Refresh Now'}
-            </button>
+            <p className="homepage-credit">Develop and maintain by <strong>G Sureshkumar</strong></p>
+            <div className="heading-controls">
+              <time className="current-time" dateTime={now.toISOString()}>{now.toLocaleString('en-SG', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' })}</time>
+              <span className="refresh-badge">Last Refresh: {formatTimestamp(dashboard.lastRefresh)}</span>
+              <button className="refresh-button" type="button" onClick={refresh} disabled={refreshing}>
+                <span aria-hidden="true">↻</span> {refreshing ? 'Refreshing…' : 'Refresh Now'}
+              </button>
+            </div>
           </div>
         </header>
 

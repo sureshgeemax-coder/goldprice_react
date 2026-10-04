@@ -57,7 +57,10 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid
 .heading-mark { color: var(--gold); font-size: 1.15rem; }
 .eyebrow { margin: 0 0 5px; color: #88703b; font-size: .72rem; font-weight: 700; letter-spacing: .08em; }
 .muted, .section-subtitle { margin: 3px 0 0; color: var(--muted); }
-.heading-actions { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 10px; }
+.heading-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.homepage-credit { margin: 0; color: #a64b42; font-size: .9rem; font-weight: 750; text-align: right; }
+.homepage-credit strong { color: #176b66; font-weight: 800; }
+.heading-controls { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 10px; }
 .current-time { color: var(--muted); font-size: .86rem; }
 .refresh-badge { padding: 5px 8px; border-radius: 3px; background: #e5edef; color: #31535b; font-size: .75rem; }
 .refresh-button, .return-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; padding: 7px 12px; border: 1px solid #c69a36; border-radius: 4px; background: #e4bc59; color: #2c3029; font-weight: 650; text-decoration: none; cursor: pointer; }
@@ -142,7 +145,6 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid
 .price-disclaimer { margin: 0 0 18px; padding: 15px 18px; border-left: 4px solid var(--gold); border-radius: 3px; background: #f0eee6; color: #4b514c; }
 .price-disclaimer p { margin: 4px 0 0; line-height: 1.55; }
 .price-disclaimer p + p { margin-top: 8px; }
-
 .page-heading { align-items: flex-end; margin: 0 0 18px; }
 .page-heading h1 { margin-top: 2px; }
 .page-eyebrow { margin-top: 16px; }
@@ -185,7 +187,8 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid
   .navbar-links.is-expanded { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .nav-link { padding: 9px 6px; white-space: normal; }
   .dashboard-heading h1, .page-heading h1 { font-size: 1.5rem; }
-  .heading-actions { justify-content: flex-start; }
+  .heading-actions { align-items: flex-end; }
+  .heading-controls { justify-content: flex-end; }
   .history-chart-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .chart-frame { height: 270px; }
   .content-section { padding: 16px 13px; }
@@ -196,7 +199,8 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid
   .dashboard-shell { width: min(100% - 20px, 1560px); }
   .source-grid, .detail-rate-grid { grid-template-columns: 1fr; }
   .dashboard-heading { align-items: flex-start; }
-  .heading-actions { align-items: flex-start; flex-direction: column; }
+  .heading-actions { align-items: flex-end; }
+  .heading-controls { justify-content: flex-end; }
   .current-time { font-size: .82rem; }
   .refresh-badge { white-space: normal; }
   .source-card-header h2 { font-size: .9rem; }
