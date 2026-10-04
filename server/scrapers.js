@@ -54,16 +54,20 @@ async function scrapeMustafa(shop) {
 async function scrapeMalabar(shop) {
   const url = configuredUrl('MALABAR_GOLD_URL', shop.url);
   const html = await requestText(url, 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8');
-  const extract = (cellId) => {
-    const pattern = new RegExp(`<td\\b(?=[^>]*\\bid\\s*=\\s*["']${cellId}["'])[^>]*>(.*?)<\\/td>`, 'is');
-    const cell = pattern.exec(html);
-    const value = cell && /([\d,]+(?:\.\d+)?)/.exec(cell[1]);
-    return value ? parseRate(value[1]) : null;
+  const rows = [...html.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(([, row]) => row);
+  const rowCells = (row) => [...row.matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi)].map(([, cell]) => decodeHtml(cell).trim());
+  const singaporeIndex = rows.findIndex((row) => {
+    const cells = rowCells(row);
+    return cells.length >= 3 && cells[0].toLowerCase() === 'singapore';
+  });
+  const singaporeCells = singaporeIndex < 0 ? [] : rowCells(rows[singaporeIndex]);
+  const extractRate = (value) => {
+    const match = /([\d,]+(?:\.\d+)?)/.exec(value || '');
+    return match ? parseRate(match[1]) : null;
   };
-  const rate916 = extract('price22kt_85');
-  const rate999 = extract('price24kt_85');
-  const updatedMatch = /<[^>]*\bid\s*=\s*["']updatedtime_85["'][^>]*>(.*?)<\/[^>]+>/is.exec(html);
-  const updatedText = updatedMatch ? updatedMatch[1].replace(/<[^>]+>/g, '').trim() : '';
+  const rate916 = extractRate(singaporeCells[1]);
+  const rate999 = extractRate(singaporeCells[2]);
+  const updatedText = singaporeIndex < 0 ? '' : rowCells(rows[singaporeIndex + 1] || '')[0] || '';
   const updated = parsePublishedTimestamp(updatedText, 'dmY');
   if (rate916 == null || rate999 == null) throw new Error('Unable to parse Singapore gold rates from Malabar page.');
   return { rate916, rate999, updated: updated || getSingaporeTimestamp(), url };
