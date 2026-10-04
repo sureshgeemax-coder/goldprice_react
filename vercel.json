@@ -1,0 +1,12 @@
+{
+  "functions": {
+    "api/*.js": {
+      "includeFiles": "data/GoldRates.xlsx",
+      "maxDuration": 60
+    }
+  },
+  "rewrites": [
+    { "source": "/about", "destination": "/" },
+    { "source": "/shop/:shop", "destination": "/" }
+  ]
+}
