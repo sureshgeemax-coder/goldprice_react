@@ -15,16 +15,13 @@ const links = [
 
 export default function Navigation({ currentPath }) {
   const [expanded, setExpanded] = useState(false);
-  const [exitMessage, setExitMessage] = useState('');
 
   function closeCurrentTab() {
-    setExitMessage('');
     window.close();
-    if (!window.closed) setExitMessage('Your browser blocked this page from closing. Close this tab to exit.');
+    if (!window.closed) window.location.replace('about:blank');
   }
 
   return (
-    <>
       <nav className="dashboard-nav" aria-label="Main navigation">
         <a className="navbar-brand" href="/">SG Gold Rates</a>
         <button
@@ -57,7 +54,5 @@ export default function Navigation({ currentPath }) {
           <button className="nav-action-button" type="button" onClick={closeCurrentTab}>Close</button>
         </div>
       </nav>
-      {exitMessage && <p className="nav-exit-notice" role="status">{exitMessage}</p>}
-    </>
   );
 }
