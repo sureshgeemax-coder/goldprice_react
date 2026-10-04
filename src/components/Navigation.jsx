@@ -23,10 +23,6 @@ export default function Navigation({ currentPath }) {
     if (!window.closed) setExitMessage('Your browser blocked this page from closing. Close this tab to exit.');
   }
 
-  function exitApplication() {
-    if (window.confirm('Exit the Gold Price Rate Dashboard?')) closeCurrentTab();
-  }
-
   return (
     <>
       <nav className="dashboard-nav" aria-label="Main navigation">
@@ -59,7 +55,6 @@ export default function Navigation({ currentPath }) {
         </div>
         <div className="nav-window-actions">
           <button className="nav-action-button" type="button" onClick={closeCurrentTab}>Close</button>
-          <button className="nav-action-button nav-action-exit" type="button" onClick={exitApplication}>Exit</button>
         </div>
       </nav>
       {exitMessage && <p className="nav-exit-notice" role="status">{exitMessage}</p>}
