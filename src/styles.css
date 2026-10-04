@@ -145,6 +145,28 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid
 .price-disclaimer { margin: 0 0 18px; padding: 15px 18px; border-left: 4px solid var(--gold); border-radius: 3px; background: #f0eee6; color: #4b514c; }
 .price-disclaimer p { margin: 4px 0 0; line-height: 1.55; }
 .price-disclaimer p + p { margin-top: 8px; }
+.calculator-heading { align-items: flex-start; margin-bottom: 16px; }
+.calculator-settings { display: flex; flex-wrap: wrap; gap: 10px; }
+.calculator-settings label { display: grid; gap: 5px; color: #4e5c55; font-size: .82rem; font-weight: 600; }
+.calculator-settings input { width: 130px; min-height: 36px; padding: 6px 9px; border: 1px solid #cbd4cc; border-radius: 4px; background: var(--white); color: var(--ink); }
+.calculator-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.calculator-panel { min-width: 0; padding: 16px; border: 1px solid var(--line); border-top: 3px solid var(--gold); border-radius: 5px; background: #fbfcfa; }
+.calculator-panel-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 6px 12px; margin-bottom: 12px; }
+.calculator-panel-heading h3 { margin: 0; color: var(--ink); font-size: 1rem; }
+.calculator-panel-heading span { color: var(--muted); font-size: .84rem; }
+.weight-label { display: block; margin-bottom: 5px; color: #4e5c55; font-size: .86rem; font-weight: 600; }
+.weight-input-wrap { display: flex; align-items: center; gap: 10px; }
+.weight-input-wrap input { width: min(100%, 260px); min-height: 40px; padding: 8px 10px; border: 1px solid #cbd4cc; border-radius: 4px; background: var(--white); color: var(--ink); font: inherit; }
+.weight-input-wrap input[aria-invalid="true"] { border-color: #b13832; }
+.weight-input-wrap span { color: var(--muted); font-size: .86rem; white-space: nowrap; }
+.weight-help { margin: 5px 0 0; color: var(--muted); font-size: .75rem; }
+.calculator-error { margin: 7px 0 0; color: #9a302a; font-size: .82rem; }
+.price-breakdown { margin: 14px 0 0; }
+.price-breakdown > div { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; border-bottom: 1px solid #edf0ec; font-size: .84rem; }
+.price-breakdown dt { color: #536158; }
+.price-breakdown dd { margin: 0; color: var(--ink); font-variant-numeric: tabular-nums; text-align: right; }
+.price-breakdown .estimated-total { margin-top: 4px; border-bottom: 0; color: var(--forest); font-size: .96rem; font-weight: 700; }
+.estimated-total dd { color: var(--forest); }
 .page-heading { align-items: flex-end; margin: 0 0 18px; }
 .page-heading h1 { margin-top: 2px; }
 .page-eyebrow { margin-top: 16px; }
@@ -190,6 +212,7 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid
   .heading-actions { align-items: flex-end; }
   .heading-controls { justify-content: flex-end; }
   .history-chart-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .calculator-grid { grid-template-columns: minmax(0, 1fr); }
   .chart-frame { height: 270px; }
   .content-section { padding: 16px 13px; }
   .detail-meta { grid-template-columns: 1fr; }

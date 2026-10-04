@@ -1,4 +1,5 @@
 import CurrencyConverter from './CurrencyConverter.jsx';
+import GoldPriceCalculator from './GoldPriceCalculator.jsx';
 import HistoryCharts from './HistoryCharts.jsx';
 import Navigation from './Navigation.jsx';
 
@@ -38,6 +39,7 @@ export default function ShopPage({ shop }) {
             </article>
           ))}
         </section>
+        <GoldPriceCalculator shop={shop} />
         <section className="detail-meta">
           <div><span className="meta-label">{shop.key === 'grt' ? 'Fetched; source does not publish an update time' : 'Last updated by source'}</span><strong>{formatTimestamp(shop.updated)}</strong></div>
           <div><span className="meta-label">Rate source</span><a href={shop.url} target="_blank" rel="noopener noreferrer">Visit {shop.name} source ↗</a></div>
