@@ -69,7 +69,22 @@ async function scrapeMalabar(shop) {
   const rate999 = extractRate(singaporeCells[2]);
   const updatedText = singaporeIndex < 0 ? '' : rowCells(rows[singaporeIndex + 1] || '')[0] || '';
   const updated = parsePublishedTimestamp(updatedText, 'dmY');
-  if (rate916 == null || rate999 == null) throw new Error('Unable to parse Singapore gold rates from Malabar page.');
+  if (rate916 == null || rate999 == null) {
+    const titleMatch = /<title\b[^>]*>([\s\S]*?)<\/title>/i.exec(html);
+    const textPreview = decodeHtml(html.replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, ' ').replace(/<[^>]+>/g, ' '))
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 180);
+    console.warn('Malabar Singapore rate row was not parseable.', {
+      url,
+      htmlLength: html.length,
+      title: titleMatch ? decodeHtml(titleMatch[1]).trim() : null,
+      singaporeRowFound: singaporeIndex >= 0,
+      singaporeCells: singaporeCells.slice(0, 3).map((cell) => cell.slice(0, 80)),
+      textPreview
+    });
+    throw new Error('Unable to parse Singapore gold rates from Malabar page.');
+  }
   return { rate916, rate999, updated: updated || getSingaporeTimestamp(), url };
 }
 

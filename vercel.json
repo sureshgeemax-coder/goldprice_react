@@ -1,6 +1,15 @@
 {
   "functions": {
-    "api/*.js": {
+    "api/refresh.js": {
+      "includeFiles": "data/GoldRates.xlsx",
+      "maxDuration": 60,
+      "regions": ["sin1"]
+    },
+    "api/rates.js": {
+      "includeFiles": "data/GoldRates.xlsx",
+      "maxDuration": 60
+    },
+    "api/history.js": {
       "includeFiles": "data/GoldRates.xlsx",
       "maxDuration": 60
     }
