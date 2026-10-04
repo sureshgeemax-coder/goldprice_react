@@ -27,3 +27,20 @@ test('Malabar reads Singapore rates and update time without fixed cell IDs', asy
   assert.equal(result.rate999, 180.7);
   assert.equal(result.lastUpdated, '2026-10-03T18:28:00+08:00');
 });
+
+test('Malabar upstream errors remain explicit failures without fabricated rates', async (t) => {
+  const previousUrl = process.env.MALABAR_GOLD_URL;
+  process.env.MALABAR_GOLD_URL = 'https://malabar.test/singapore';
+  t.after(() => {
+    if (previousUrl === undefined) delete process.env.MALABAR_GOLD_URL;
+    else process.env.MALABAR_GOLD_URL = previousUrl;
+  });
+  t.mock.method(globalThis, 'fetch', async () => new Response('temporarily unavailable', { status: 503 }));
+
+  const result = await scrapeShop(SHOPS.find((shop) => shop.key === 'malabar'));
+
+  assert.equal(result.success, false);
+  assert.equal(result.errorMessage, 'Failed to retrieve Malabar rates: Source returned HTTP 503.');
+  assert.equal(result.rate916, undefined);
+  assert.equal(result.rate999, undefined);
+});
